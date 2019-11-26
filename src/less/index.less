@@ -1,0 +1,214 @@
+.layout {
+  background: #f5f7f9;
+  position: relative;
+  overflow: hidden;
+}
+
+.layout-nav {
+  width: 100%;
+  margin: 0 auto;
+  margin-right: 20px;
+}
+
+.layout-footer-center {
+  text-align: center;
+}
+
+.layout-header-bar {
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.layout-con {
+  height: 100%;
+  width: 100%;
+}
+
+.menu-item span {
+  display: inline-block;
+  overflow: hidden;
+  width: 90px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+  transition: width 0.2s ease 0.2s;
+}
+
+.menu-item i {
+  transform: translateX(0px);
+  transition: font-size 0.2s ease, transform 0.2s ease;
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+.collapsed-menu span {
+  width: 0px;
+  transition: width 0.2s ease;
+}
+
+.collapsed-menu i {
+  transform: translateX(5px);
+  transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;
+  vertical-align: middle;
+  font-size: 27px;
+}
+
+
+
+//侧边栏修改
+
+
+
+.ivu-layout-sider {
+  background-color: #23282d;
+}
+
+.ivu-menu-dark {
+  background-color: #23282d;
+}
+
+.collapsed-menu {
+  .ivu-icon-ios-arrow-down {
+    display: none;
+  }
+}
+
+.ivu-menu-vertical {
+  .ivu-menu-item {
+    padding: 14px 14px;
+  }
+
+  .ivu-menu-submenu-title {
+    padding: 14px 14px;
+  }
+}
+
+.ivu-menu-dark.ivu-menu-vertical {
+
+  .ivu-menu-submenu .ivu-menu-item-active,
+  .ivu-menu-submenu .ivu-menu-item-active:hover {
+    border-right: none;
+    color: #fff;
+    background: @light-blue  !important;
+
+  }
+
+  .ivu-menu-item-active:not(.ivu-menu-submenu),
+  .ivu-menu-item-active:not(.ivu-menu-submenu):hover,
+  .ivu-menu-submenu-title-active:not(.ivu-menu-submenu),
+  .ivu-menu-submenu-title-active:not(.ivu-menu-submenu):hover {
+    background: @light-blue;
+  }
+
+  .ivu-menu-item-active:not(.ivu-menu-submenu),
+  .ivu-menu-submenu-title-active:not(.ivu-menu-submenu) {
+    border-right: none;
+    color: #fff;
+    background: @light-blue;
+  }
+
+  .ivu-menu-opened .ivu-menu-submenu-title {
+    background-color: @main-black;
+  }
+
+  .ivu-menu-item:hover,
+  .ivu-menu-submenu-title:hover {
+    background-color: @main-black;
+  }
+
+}
+
+
+
+//header更改
+.bgc-black {
+  background-color: @main-black;
+}
+
+.ivu-menu-horizontal {
+  height: 0px;
+}
+
+.ivu-layout-header {
+  padding: 0px;
+}
+
+.h-icon {
+  transform: translateX(0px);
+  -webkit-transition: font-size 0.2s ease, -webkit-transform 0.2s ease;
+  transition: font-size 0.2s ease, -webkit-transform 0.2s ease;
+  transition: font-size 0.2s ease, transform 0.2s ease;
+  transition: font-size 0.2s ease, transform 0.2s ease, -webkit-transform 0.2s ease;
+  vertical-align: middle;
+  font-size: 30px;
+  color: rgba(255, 255, 255, .7);
+}
+
+
+
+.ivu-menu-light.ivu-menu-horizontal {
+
+  .ivu-menu-item-active,
+  .ivu-menu-item:hover,
+  .ivu-menu-submenu-active,
+  .ivu-menu-submenu:hover ,
+  .ivu-menu-item-selected{
+    color: @light-lightblue;
+    border-bottom: 0px;
+  }
+
+  .ivu-menu-item,
+  .ivu-menu-submenu {
+    color: rgba(255, 255, 255, .7);
+  }
+}
+
+.ivu-menu-light.ivu-menu-horizontal{
+  .ivu-menu-item{
+    border-bottom:0px ;
+  }
+  .ivu-menu-submenu{
+    border-bottom:0px ;
+  }
+}  
+
+.ivu-menu-horizontal .ivu-menu-item {
+  padding: 0 20px 0 26px;
+}
+
+
+
+
+
+//下箭头
+.ivu-layout-sider-trigger {
+  .ivu-icon {
+    font-size: 30px;
+  }
+}
+
+.ivu-layout-sider-trigger {
+  background-color: @main-black;
+}
+
+
+
+
+//通用设置
+.fl {
+  float: left;
+}
+.fr{
+  float: right;
+}
+.mr-0 {
+  margin-right: 0;
+}
+
+.f-s-19px {
+  font-size: 19px;
+}
+
+@light-blue: #0073aa;
+@main-black: #23282d;
+@light-lightblue: #3c85d2;
