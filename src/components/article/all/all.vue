@@ -1,9 +1,6 @@
 <template>
-  <div>
     <Content :style="{padding: '0 50px'}">
       <Breadcrumb :style="{margin: '20px 0'}">
-        <BreadcrumbItem>草稿</BreadcrumbItem>
-        <BreadcrumbItem>全部</BreadcrumbItem>
       </Breadcrumb>
       <Card>
         
@@ -13,7 +10,6 @@
 
       </Card>
     </Content>
-  </div>
 </template>
 
 <script>

@@ -1,174 +1,118 @@
 <template>
-  <div>
-    <div style="min-height: 600px; ">
-      <Alert
-        :class="{'send' : get}"
-        type="success"
-        show-icon
-      >发布成功</Alert>
-      <Alert
-        :class="{'send' : unget}"
-        type="error"
-        show-icon
-      >发布失败</Alert>
-      <div class="ml-2 ">
-        <span>标题：</span>
-        <Input
-          style="width: 200px"
-          v-model="input1"
-        />
-      </div>
-      <div
-        class="pt-2"
-        ref="editor"
-        style="text-align:left"
-      >
-      </div>
-      <div class="fr pt-2">
-        <Button
-          type="primary"
-          @click="value3 = true;"
+  <Row>
+    <Col span="20">
+    <Card>
+      <div style="min-height: 600px; ">
+        <Alert
+          type="success"
+          show-icon
+        >发布成功</Alert>
+        <Alert
+          type="error"
+          show-icon
+        >发布失败</Alert>
+        <div class="ml-2 ">
+          <span>标题：</span>
+          <Input
+            style="width: 200px"
+            v-model="input1"
+          />
+        </div>
+        <div
+          class="pt-2"
+          ref="editor"
+          style="text-align:left"
         >
-          <span>发布</span>
-        </Button>
-        <Drawer
-          title="发布信息"
-          v-model="value3"
-          width="360"
-          :closable="false"
-          :styles="styles"
-        >
-          <Form :model="formData">
-            <Row :gutter="32">
-              <Col span="24">
-              <FormItem
-                label="Url"
-                label-position="top"
-              >
-                <Input
-                  v-model="formData.url"
-                  placeholder="url..."
-                >
-                <span slot="prepend">http://</span>
-                <span slot="append">.com</span>
-                </Input>
-              </FormItem>
-              </Col>
-            </Row>
-            <Row :gutter="32">
-              <Col span="24">
-              <FormItem
-                label="提交人"
-                label-position="top"
-              >
-                <Select
-                  v-model="formData.owner"
-                  placeholder="选择用户"
-                >
-                  <Option value="jobs">Steven Paul Jobs</Option>
-                  <Option value="ive">Sir Jonathan Paul Ive</Option>
-                </Select>
-              </FormItem>
-              </Col>
-            </Row>
-            <Row :gutter="32">
-              <Col span="24">
-              <FormItem
-                label="类型"
-                label-position="top"
-              >
-                <Select
-                  v-model="formData.type"
-                  placeholder="选择文件类型"
-                >
-                  <Option value="private">个人</Option>
-                  <Option value="public">公开</Option>
-                </Select>
-              </FormItem>
-              </Col>
-            </Row>
-            <Row :gutter="32">
-              <Col span="24">
-              <FormItem
-                label="更新日期"
-                label-position="top"
-              >
-                <DatePicker
-                  v-model="formData.date"
-                  type="daterange"
-                  placeholder="请选择日期"
-                  style="display: block"
-                  placement="bottom-end"
-                ></DatePicker>
-              </FormItem>
-              </Col>
-            </Row>
-            <FormItem
-              label="文章描述"
-              label-position="top"
-            >
-              <Input
-                type="textarea"
-                v-model="formData.desc"
-                :rows="4"
-                placeholder="请输入你的描述"
-              />
-            </FormItem>
-          </Form>
-          <div class="demo-drawer-footer">
-            <Button
-              style="margin-right: 8px"
-              @click="value3 = false"
-            >
-              <span>取消</span>
-            </Button>
-            <Button
-              type="primary"
-              @click="value3 = false ; getContent();"
-            >
-              <span>确认发布</span>
-            </Button>
-          </div>
-        </Drawer>
+        </div>
+        <div class="fr pt-2">
+          <Button
+            type="primary"
+            @click="value3 = true;"
+          >
+            <span>发布</span>
+          </Button>
+        </div>
       </div>
-    </div>
-  </div>
+    </Card>
+    </Col>
+    <Col span="4">
+    <Collapse v-model="value1">
+      <Panel name="1">
+        文章分类
+        <div slot="content">
+          <span>状态：</span>
+          <Select
+            v-model="model2"
+            size="small"
+            style="width:100px"
+          >
+            <Option
+              v-for="item in optionList"
+              :value="item.value"
+              :key="item.value"
+            >{{ item.label }}</Option>
+          </Select></div>
+
+      </Panel>
+      <Panel name="2">
+        文章置顶设置
+        <Checkbox
+          slot="content"
+          v-model="up"
+        ><span class="ml-2">置顶</span></Checkbox>
+      </Panel>
+      <Panel name="3">
+        备注
+          <Input
+          slot="content"
+            type="textarea"
+            v-model="formData.desc"
+            :rows="4"
+            placeholder="..."
+          />
+      </Panel>
+    </Collapse>
+    </Col>
+
+  </Row>
 </template>
 <style lang="less" scoped>
 @import "../../less/my.less";
-.demo-drawer-footer {
-  width: 100%;
-  position: absolute;
-  bottom: 30%;
-  left: 0;
-  padding: 10px 16px;
-  text-align: right;
-  background: #fff;
-}
+
 .send {
   display: none;
 }
 </style>
 <script>
 import E from "wangeditor";
-import bus from "../../articleBus.js";
+// import bus from "../../articleBus.js";
 export default {
   name: "myEditor",
   data() {
     return {
+      value1: [1, 2, 3],
       value3: false,
       editorContent: "",
       input1: "",
-      loading: false,
-      loading2: false,
       get: true,
       unget: true,
+      imgUrl: "",
       styles: {
         height: "calc(100% - 55px)",
         overflow: "auto",
         paddingBottom: "53px",
         position: "static"
       },
+      optionList: [
+        {
+          value: "草稿",
+          label: "草稿"
+        },
+        {
+          value: "发布",
+          label: "发布"
+        }
+      ],
       formData: {
         url: "",
         owner: "",
@@ -182,7 +126,22 @@ export default {
   mounted() {
     var editor = new E(this.$refs.editor);
     editor.customConfig.zIndex = 100;
-    editor.customConfig.uploadImgShowBase64 = true;
+    // editor.customConfig.uploadImgShowBase64 = true;
+    editor.customConfig.uploadImgServer = "";
+    editor.customConfig.customUploadImg = function(files, insert) {
+      // files 是 input 中选中的文件列表
+      // insert 是获取图片 url 后，插入到编辑器的方法
+
+      // 上传代码返回结果之后，将图片插入到编辑器中
+      insert(imgUrl);
+      console.log(imgUrl);
+    };
+    editor.customConfig.uploadImgParams = {
+      // 如果版本 <=v3.1.0 ，属性值会自动进行 encode ，此处无需 encode
+      // 如果版本 >=v3.1.1 ，属性值不会自动 encode ，如有需要自己手动 encode
+      token: "wdnmdlzb"
+    };
+    editor.customConfig.uploadImgParamsWithUrl = true;
     editor.customConfig.onchange = html => {
       this.editorContent = html;
     };
@@ -192,18 +151,6 @@ export default {
     getContent() {
       // bus.Semit("titleMsg", title);
       this.get = !this.get;
-      axios({
-        url: "",
-        methods: "get",
-        params: {
-          title: this.input1,
-          content: this.editorContent
-        }
-      })
-        .then(this.getUserInfo)
-        .catch(err => {
-          alert("发布失败"); 
-        });
     }
   }
 };

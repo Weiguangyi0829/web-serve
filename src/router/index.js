@@ -9,14 +9,17 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'sideBar',
-      redirect:'/help',
-      component:()=> import('@/components/sideBar'),
-      children:[
+      name: 'index',
+      component: () => import('@/components/index.vue'),
+      children: [
         {
-          path:'/help',
-          name:'help',
-          component:()=> import('@/components/help/help')
+          path: '/help',
+          name: 'help',
+          component: () => import('@/components/help/help'),
+          // beforeRouteEnter(to, from, next) {
+          //   alert('asdasd')
+          //   next();
+          // },
         },
         {
           path:'/article',
@@ -39,7 +42,7 @@ export default new Router({
         //   component:()=> import('@/components/article/myArticle/myEditor/myEditor')
         // },
       ]
-    },     
-       
+    },
+
   ]
 })
