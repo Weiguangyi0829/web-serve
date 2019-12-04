@@ -31,16 +31,6 @@ export default new Router({
           name:'all',
           component:()=> import('@/components/article/all/all')
         },
-        {
-          path:'/comment',
-          name:'comment',
-          component:()=> import('@/components/comment/comment')
-        },
-        // {
-        //   path:'/editor',
-        //   name:'myEditor',
-        //   component:()=> import('@/components/article/myArticle/myEditor/myEditor')
-        // },
       ]
     },
 

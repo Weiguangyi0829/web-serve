@@ -11,8 +11,6 @@ import VueAxios from 'vue-axios'
 
 
 import 'view-design/dist/styles/iview.css';
-import { post, fetch, patch, put } from './request/http.js'
-import store from './store'
 
 Vue.use(ViewUI);
 Vue.use(Vuex)
